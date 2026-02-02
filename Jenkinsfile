@@ -4,11 +4,15 @@ pipeline {
             label 'maven'
         }
     }
-
+enviornment {
+    PATH = "/opt/apache-maven-3.9.12/bin:$PATH"
+}
     stages {
-        stage('Clone Project Code') {
+        stage('build') {
             steps {
-                git branch: 'main', url: 'https://github.com/singhpalwinder27-ai/tweet-trend-for-Project2.git'
+               echo  "build started"
+               sh 'mvn clean deploy'
+               echo "build completed"
             }
         }
     }
